@@ -23,10 +23,10 @@ class Start:
 
         response = (time.time() - antes) * 1000.0
 
-        print("[START] Typescript_" + str(tamanho))
+        print("[START] Python_" + str(tamanho))
         print("[OK]Tamanho: " + str(tamanho))
         print("[OK]Tempo: " + str(response) + " ms")
-        print("[END] Typescript_" + str(tamanho))
+        print("[END] Python_" + str(tamanho))
 
     # Metodo responsavel por criar um usuario
     # @param index Identificador do usuario
