@@ -3,13 +3,14 @@ class UserInfo:
 
     # Construtor publico da classe
     # @param user Nome do usuario
-    # @param password Senha do usuario
-    def __init__(self, user, password):
+    # @param credit Credito do usuario
+    # @param password Senha do usuario    
+    def __init__(self, user, password, credit):
         self.__user = user
         self.__password = password
+        self.__credit = credit
 
-    # Obtem o nome do usuario
-    # @return Nome do usuario
+    # Método getter de 'user'
     def getUser(self):
         return self.__user
 
@@ -18,18 +19,24 @@ class UserInfo:
     def getPassword(self):
         return self.__cryptPassword(self.__password)
 
-    # Atualiza o nome do usuario
-    # @param user Novo nome do usuario
+    # Método getter de 'credit'
+    def getCredit(self):
+        return self.__credit
+
+    # Método setter de 'user'
     def setUser(self, user):
         self.__user = user
 
-    # Atualiza a senha do usuario
-    # @param password Nova senha do usuario
+    # Método setter de 'password'
     def setPassword(self, password):
         self.__password = password
+
+    # Método setter de 'credit'
+    def setCredit(self, credit):
+        self.__credit = credit
 
     # Metodo privado para encriptar a senha do usuario
     # @param password Senha a ser encriptada
     # @return Nova senha encriptada
     def __cryptPassword(self, password):
-        return "HASH{}000".format(password[::-1])
+        return "HASH" + password[::-1] + "000"

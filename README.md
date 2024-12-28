@@ -27,19 +27,23 @@ git clone -b <branch> https://github.com/PedroDrim/bml-python
 
 ```
 # Gerando build docker
-sudo docker build -t simpleclass_python .
+sudo docker build -t inputclass_python .
 
 # Executando container
-sudo docker run simpleclass_python
+sudo docker run inputclass_python
 ```
 
 4. O resultado sairá no STDOUT no seguinte formato:
 
 ```
-[START] Typescript_1000000
-[OK]Tamanho: 1000000
-[OK]Tempo: 599 ms
-[END] Typescript_1000000
+[START] Python_data/data_1e+06.csv
+[OK]Arquivo: data/data_1e+06.csv
+[OK]Tempo_leitura: 600.3546714782715 ms
+[OK]Tempo_analise: 1.7704963684082031 ms
+[OK]Max: 1000000
+[OK]Min: 1
+[OK]Mean: 500000.5
+[END] Python_data/data_1e+06.csv
 ```
 
 ### Garantia de Qualidade

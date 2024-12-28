@@ -7,13 +7,16 @@ WORKDIR /app
 COPY ./ /app/
 
 # Instalando gcc
-RUN apt update && apt install -y build-essential
+RUN apt update && apt install -y build-essential unzip
 
 # Instalando pacotes
-RUN pip install numpy
+RUN pip install pandas
 
 # Executando testes
 RUN sh Test.sh
+
+# Descompando arquivos de simulacao
+RUN unzip data/simulationInput.zip -d data
 
 # Iniciando CLI
 ENTRYPOINT ["sh","Bench.sh"]

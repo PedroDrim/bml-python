@@ -1,56 +1,65 @@
-
-import sys
 import time
-import numpy as np
+import sys
 
-from src.model.UserInfo import UserInfo
+from src.model.Table import Table
+from src.provider.MaxValueAnalysis import MaxValueAnalysis
+from src.provider.MinValueAnalysis import MinValueAnalysis
+from src.provider.MeanAnalysis import MeanAnalysis
 
 # Classe inicial do sistema
 class Start:
-
+    
     # Método de inicialização do projeto
     # @param args Lista de parametros obtidos via console
-    def __init__(self, param):
-        # Obtendo tamanho da lista
-        tamanho = self.__getParam(param)
-        antes = time.time()
-
-        userList = np.arange(tamanho)
-        userList = map(self.__createUserInfo, userList)
+    def __init__(self, args):
+        fileName = self.__getParam(args)
         
-        # Abrindo resposta do map (Isso carrega o objeto inteiro na memoria e permite acesso)
-        userList = list(userList)
+        # Obtendo o tempo inicial de leitura em milissegundos
+        leitura_inicio = time.time()
 
-        response = (time.time() - antes) * 1000.0
+        # Convertendo arquivo em lista de "UserInfo"
+        table = Table(fileName)
 
-        print("[START] Typescript_" + str(tamanho))
-        print("[OK]Tamanho: " + str(tamanho))
-        print("[OK]Tempo: " + str(response) + " ms")
-        print("[END] Typescript_" + str(tamanho))
+        # Obtendo o tempo final de leitura em milissegundos
+        leitura_fim = time.time()
 
-    # Metodo responsavel por criar um usuario
-    # @param index Identificador do usuario
-    # @returns Novo usuario
-    def __createUserInfo(self, index):
-        sIndex = str(index)
-        user = "user%s" % sIndex
-        password = "password%s" % sIndex
-        return UserInfo(user, password)
+        userInfoList = table.getUserInfoList()
+
+        maxValue = MaxValueAnalysis()
+        minValue = MinValueAnalysis()
+        meanValue = MeanAnalysis()
+
+        # Obtendo o tempo inicial de analise em milissegundos
+        analise_inicio = time.time()
+
+        # Realizando analises
+        vmax = maxValue.analysis(userInfoList)
+        vmin = minValue.analysis(userInfoList)
+        vmean = meanValue.analysis(userInfoList)
+
+        # Obtendo o tempo final de analise em milissegundos
+        analise_fim = time.time()
+
+        # Dados de saida
+        print("[START] Python_" + str(fileName))
+        print("[OK]Arquivo: " + str(fileName))
+        print("[OK]Tempo_leitura: " + str( (leitura_fim - leitura_inicio) * 1000.0) + " ms")
+        print("[OK]Tempo_analise: " + str( (analise_fim - analise_inicio) * 1000.0) + " ms")
+        print("[OK]Max: " + str(vmax))
+        print("[OK]Min: " + str(vmin))
+        print("[OK]Mean: " + str(vmean))
+        print("[END] Python_" + str(fileName))
 
     # Método para captura e tratamento dos parametros obtidos via console
     # @param codes Lista de parametros obtidos via console
     # @return Tamanho de usuários á serem gerados
     def __getParam(self, codes):
-        if(len(codes) != 2):
+        if len(codes) != 2:
             print("Parametros inválidos.")
-            sys.exit(-1)
+            raise SystemExit(-1)
             
-        line = int(codes[1])
-
-        if(line <= 0):
-            print("Quantidade de linhas menor que 1.")
-            sys.exit(-1)
-       
-        return line        
+        line = str(codes[1])
+    
+        return line
 
 Start(sys.argv)
