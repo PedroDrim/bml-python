@@ -36,10 +36,10 @@ sudo docker run simpleclass_python
 4. O resultado sairá no STDOUT no seguinte formato:
 
 ```
-[START] Typescript_1000000
+[START] Python_1000000
 [OK]Tamanho: 1000000
 [OK]Tempo: 599 ms
-[END] Typescript_1000000
+[END] Python_1000000
 ```
 
 ### Garantia de Qualidade
