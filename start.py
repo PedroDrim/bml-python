@@ -3,7 +3,7 @@ import sys
 import time
 import numpy as np
 
-from src.model.UserInfo import UserInfo
+from src.model.UserInfo.UserInfo import UserInfo
 
 # Classe inicial do sistema
 class Start:
