@@ -16,7 +16,7 @@ RUN pip install pandas
 RUN sh Test.sh
 
 # Descompando arquivos de simulacao
-RUN unzip data/simulationInput.zip -d data
+RUN unzip data/simulationInput_M.zip -d data
 
 # Iniciando CLI
 ENTRYPOINT ["sh","Bench.sh"]
