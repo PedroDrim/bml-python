@@ -19,7 +19,7 @@ class Start:
         userList = map(self.__createUserInfo, userList)
         
         # Abrindo resposta do map (Isso carrega o objeto inteiro na memoria e permite acesso)
-        userList = list(userList)
+        # userList = list(userList) ---> So e necessario caso queira recuperar os valores
 
         response = (time.time() - antes) * 1000.0
 
