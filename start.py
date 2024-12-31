@@ -1,65 +1,86 @@
-import time
+from src.model.UserInfo import UserInfo
+from src.provider.TableReader import TableReader
+from src.provider.BenchmarkMeasure import BenchmarkMeasure
+from src.provider.SummaryAnalysis import SummaryAnalysis
+from src.provider.MergeSortAnalysis import MergeSortAnalysis
+from src.provider.QuickSortAnalysis import QuickSortAnalysis
+from src.provider.LanguageSortAnalysis import LanguageSortAnalysis
+from src.model.TimeFormat import TimeFormat
+import numpy as np
+import json
 import sys
 
-from src.model.Table import Table
-from src.provider.MaxValueAnalysis import MaxValueAnalysis
-from src.provider.MinValueAnalysis import MinValueAnalysis
-from src.provider.MeanAnalysis import MeanAnalysis
-
-# Classe inicial do sistema
 class Start:
-    
-    # Método de inicialização do projeto
-    # @param args Lista de parametros obtidos via console
-    def __init__(self, args):
-        fileName = self.__getParam(args)
-        
-        # Obtendo o tempo inicial de leitura em milissegundos
-        leitura_inicio = time.time()
 
-        # Convertendo arquivo em lista de "UserInfo"
-        table = Table(fileName)
+    def __init__(self, configFile):
 
-        # Obtendo o tempo final de leitura em milissegundos
-        leitura_fim = time.time()
+        properties = self.__getConfig(configFile)
 
-        userInfoList = table.getUserInfoList()
+        bInput = properties["INPUT_FILENAME_LIST"]
+        bOutput = properties["OUTPUT_FILENAME"]
 
-        maxValue = MaxValueAnalysis()
-        minValue = MinValueAnalysis()
-        meanValue = MeanAnalysis()
+        benchmark = BenchmarkMeasure()
 
-        # Obtendo o tempo inicial de analise em milissegundos
-        analise_inicio = time.time()
+        summaryAnalysis = SummaryAnalysis()
+        mergeSortAnalysis = MergeSortAnalysis()
+        quickSortAnalysis = QuickSortAnalysis()
+        languageSortAnalysis = LanguageSortAnalysis()
 
-        # Realizando analises
-        vmax = maxValue.analysis(userInfoList)
-        vmin = minValue.analysis(userInfoList)
-        vmean = meanValue.analysis(userInfoList)
+        for index in np.arange(len(bInput)):
+            fileName = bInput[index]
+            print("[START] Arquivo: " + str(index))
 
-        # Obtendo o tempo final de analise em milissegundos
-        analise_fim = time.time()
+            #==================================================
+            # Leitura dos dados
+            print("\t[LOG] Read")
+            benchmark.startState("Read@" + str(index))
+            tableReader = TableReader(fileName)
+            bList = tableReader.readAll()
+            benchmark.endState("Read@" + str(index))
+            #==================================================
+            # Analise dos dados (Summary)
+            print("\t[LOG] Summary")
+            benchmark.startState("SummaryAnalysis@" + str(index))
+            summary = summaryAnalysis.analysis(bList)
+            benchmark.endState("SummaryAnalysis@" + str(index))
+            #==================================================
+            # Analise dos dados (Language)
+            print("\t[LOG] Language")
+            benchmark.startState("LanguageAnalysis@" + str(index))
+            lang = languageSortAnalysis.analysis(bList)
+            benchmark.endState("LanguageAnalysis@" + str(index))
+            #==================================================
+            # Convertendo de DataFrame para UserInfo[]
+            bList = bList.apply(self.__asUserInfo, axis = 1)
+            #==================================================
+            # Analise dos dados (merge)
+            print("\t[LOG] Merge")
+            benchmark.startState("MergeAnalysis@" + str(index))
+            merge = mergeSortAnalysis.analysis(bList)
+            benchmark.endState("MergeAnalysis@" + str(index))
+            #==================================================
+            # Analise dos dados (Quick)
+            print("\t[LOG] Quick")
+            benchmark.startState("QuickAnalysis@" + str(index))
+            quick =  quickSortAnalysis.analysis(bList)
+            benchmark.endState("QuickAnalysis@" + str(index))
+            #==================================================
 
-        # Dados de saida
-        print("[START] Python_" + str(fileName))
-        print("[OK]Arquivo: " + str(fileName))
-        print("[OK]Tempo_leitura: " + str( (leitura_fim - leitura_inicio) * 1000.0) + " ms")
-        print("[OK]Tempo_analise: " + str( (analise_fim - analise_inicio) * 1000.0) + " ms")
-        print("[OK]Max: " + str(vmax))
-        print("[OK]Min: " + str(vmin))
-        print("[OK]Mean: " + str(vmean))
-        print("[END] Python_" + str(fileName))
+            print("[END] Arquivo: " + str(index))
 
-    # Método para captura e tratamento dos parametros obtidos via console
-    # @param codes Lista de parametros obtidos via console
-    # @return Tamanho de usuários á serem gerados
-    def __getParam(self, codes):
-        if len(codes) != 2:
-            print("Parametros inválidos.")
-            raise SystemExit(-1)
-            
-        line = str(codes[1])
-    
-        return line
 
-Start(sys.argv)
+        benchmark.export(bOutput, TimeFormat.MILLISEGUNDOS)
+
+    def __asUserInfo(self, pdTableRow):
+        userInfo = UserInfo(pdTableRow.iloc[0], pdTableRow.iloc[1], pdTableRow.iloc[2])
+        return userInfo
+
+    def __getConfig(self, fileName):
+        f = open(fileName, 'r')
+        serializedJson = f.read()
+        f.close()
+
+        obj = json.loads(serializedJson)
+        return obj
+
+Start(sys.argv[1])

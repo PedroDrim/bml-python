@@ -10,13 +10,13 @@ COPY ./ /app/
 RUN apt update && apt install -y build-essential unzip
 
 # Instalando pacotes
-RUN pip install pandas
+RUN pip install pandas numpy
 
 # Executando testes
-RUN sh Test.sh
+#RUN sh Test.sh
 
 # Descompando arquivos de simulacao
-RUN unzip data/simulationInput.zip -d data
+RUN unzip data/simulationInput_M.zip -d data
 
 # Iniciando CLI
-ENTRYPOINT ["sh","Bench.sh"]
+ENTRYPOINT ["sh", "Bench.sh"]

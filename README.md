@@ -27,23 +27,22 @@ git clone -b <branch> https://github.com/PedroDrim/bml-python
 
 ```
 # Gerando build docker
-sudo docker build -t inputclass_python .
+sudo docker build -t errorclass_python .
 
 # Executando container
-sudo docker run inputclass_python
+sudo docker run errorclass_python
 ```
 
-4. O resultado sairá no STDOUT no seguinte formato:
+4. O resultado sairá no STDOUT no seguinte formato (organizado para melhor visualização):
 
 ```
-[START] Python_data/data_1e+06.csv
-[OK]Arquivo: data/data_1e+06.csv
-[OK]Tempo_leitura: 600.3546714782715 ms
-[OK]Tempo_analise: 1.7704963684082031 ms
-[OK]Max: 1000000
-[OK]Min: 1
-[OK]Mean: 500000.5
-[END] Python_data/data_1e+06.csv
+{
+        "Read@0":"2",
+        "SummaryAnalysis@0":"0",
+        "BubbleAnalysis@0":"1",
+        "QuickAnalysis@0":"1",
+        "LanguageAnalysis@0":"0",
+}
 ```
 
 ### Garantia de Qualidade
@@ -67,3 +66,5 @@ Esta seção é a mais divertida (na minha opinião), pois nela descrevo os expe
 | Nome (com link) | Objetivo | Técnicas utilizadas para análise |
 |-----------------|----------|----------------------------------|
 | [simpleclass](https://github.com/PedroDrim/Benchmark-Languages/blob/simpleclass/Documents/simpleclass.md) | Estudar a criação de classes simples | Scatterplot de média com desvio padrão e regressão linear simples.|
+| [inputclass](https://github.com/PedroDrim/Benchmark-Languages/blob/master/outputs/inputclass/inputclass.md) | Estudar a leitura de arquivos e interfaces | Análise por média e exibição por Barplot estacado |
+| [erroclass](https://github.com/PedroDrim/Benchmark-Languages/blob/master/outputs/errorclass/errorclass.md) | Estudar o tratamento de excessões | Análise por média com desvio padrão e exibição de ScatterPlot |
