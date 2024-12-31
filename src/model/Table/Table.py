@@ -1,5 +1,4 @@
 import pandas as pd
-from src.model.UserInfo import UserInfo
 
 # Classe para gerenciar uma tabela de usuarios
 class Table:

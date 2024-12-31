@@ -1,7 +1,7 @@
 import unittest
 
-from src.model.Table import Table
-from src.provider.MeanAnalysis import MeanAnalysis
+from src.model.Table.Table import Table
+from src.provider.MeanAnalysis.MeanAnalysis import MeanAnalysis
 
 class MeanAnalysisTest(unittest.TestCase):
 

@@ -1,10 +1,10 @@
 import time
 import sys
 
-from src.model.Table import Table
-from src.provider.MaxValueAnalysis import MaxValueAnalysis
-from src.provider.MinValueAnalysis import MinValueAnalysis
-from src.provider.MeanAnalysis import MeanAnalysis
+from src.model.Table.Table import Table
+from src.provider.MaxValueAnalysis.MaxValueAnalysis import MaxValueAnalysis
+from src.provider.MinValueAnalysis.MinValueAnalysis import MinValueAnalysis
+from src.provider.MeanAnalysis.MeanAnalysis import MeanAnalysis
 
 # Classe inicial do sistema
 class Start:

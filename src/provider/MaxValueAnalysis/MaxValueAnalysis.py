@@ -1,5 +1,4 @@
-from src.model.SimpleTableAnalysis import SimpleTableAnalysis
-from src.model.UserInfo import UserInfo
+from src.model.SimpleTableAnalysis.SimpleTableAnalysis import SimpleTableAnalysis
 
 # Classe de analise que implementa a interface "SimpleTableAnalysis"
 class MaxValueAnalysis(SimpleTableAnalysis):

@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.UserInfo import UserInfo
+from src.model.UserInfo.UserInfo import UserInfo
 
 class UserInfoTest(unittest.TestCase):
 

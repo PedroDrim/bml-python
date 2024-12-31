@@ -1,7 +1,7 @@
 import unittest
 
-from src.model.Table import Table
-from src.provider.MaxValueAnalysis import MaxValueAnalysis
+from src.model.Table.Table import Table
+from src.provider.MaxValueAnalysis.MaxValueAnalysis import MaxValueAnalysis
 
 class MaxValueAnalysisTest(unittest.TestCase):
 

@@ -1,7 +1,7 @@
 import unittest
 
-from src.model.Table import Table
-from src.provider.MinValueAnalysis import MinValueAnalysis
+from src.model.Table.Table import Table
+from src.provider.MinValueAnalysis.MinValueAnalysis import MinValueAnalysis
 
 class MinValueAnalysisTest(unittest.TestCase):
 

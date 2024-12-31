@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.Table import Table
+from src.model.Table.Table import Table
 
 class TableTest(unittest.TestCase):
 

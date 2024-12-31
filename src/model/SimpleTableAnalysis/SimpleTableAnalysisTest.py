@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.SimpleTableAnalysis import SimpleTableAnalysis
+from src.model.SimpleTableAnalysis.SimpleTableAnalysis import SimpleTableAnalysis
 
 class MockSimpleTableAnalysis(SimpleTableAnalysis):
     def analysis(self, userInfoList):
