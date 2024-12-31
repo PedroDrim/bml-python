@@ -1,6 +1,6 @@
-from src. model.exception import DataReaderException
-from src.model.DataReader import DataReader
-from src.model.exception.InvalidParameterException import InvalidParameterException
+from model.exception.DataReaderException import DataReaderException
+from model.DataReader.DataReader import DataReader
+from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
 
 # Classe responsavel por ler e disponibilizar os dados em um formato desejado

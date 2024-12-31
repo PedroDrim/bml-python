@@ -1,5 +1,5 @@
-from src.model.TableAnalysis import TableAnalysis
-from src.model.exception.InvalidParameterException import InvalidParameterException
+from model.TableAnalysis.TableAnalysis import TableAnalysis
+from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
 
 # Classe para analise de dados, obtem um usuario aleatoriamente

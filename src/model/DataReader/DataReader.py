@@ -1,5 +1,3 @@
-from src.model.UserInfo import UserInfo
-
 # Interface para leitura de dados
 class DataReader:
 

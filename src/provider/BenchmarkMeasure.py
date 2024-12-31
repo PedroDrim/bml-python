@@ -1,7 +1,7 @@
-from src.model.BenchmarkOutput import BenchmarkOutput
-from src.model.exception.InvalidParameterException import InvalidParameterException
-from src.model.exception.DataReaderException import DataReaderException
-from src.model.exception.BenchmarkException import BenchmarkException
+from model.BenchmarkOutput.BenchmarkOutput import BenchmarkOutput
+from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
+from model.exception.DataReaderException.DataReaderException import DataReaderException
+from model.exception.BenchmarkException.BenchmarkException import BenchmarkException
 
 import time
 import json

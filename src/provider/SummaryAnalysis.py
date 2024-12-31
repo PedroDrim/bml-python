@@ -1,5 +1,5 @@
-from src.model.TableAnalysis import TableAnalysis
-from src.model.exception.InvalidParameterException import InvalidParameterException
+from model.TableAnalysis.TableAnalysis import TableAnalysis
+from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
 
 # Classe para analise de dados, obtem os valores maximo e minimo dos creditos dos usuarios
@@ -12,7 +12,7 @@ class SummaryAnalysis(TableAnalysis):
     # @see TableAnalysis
     def analysis(self, userInfoList):
         if(not isinstance(userInfoList, pd.DataFrame) or userInfoList.empty):
-            raise InvalidParameterException("'userInfoList' é None ou vazio")
+            raise InvalidParameterException("'userInfoList' e invalido")
 
         vmax = userInfoList["credit"].max()
         vmin = userInfoList["credit"].min()

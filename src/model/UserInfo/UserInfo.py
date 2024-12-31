@@ -1,4 +1,4 @@
-from src.model.exception.InvalidParameterException import InvalidParameterException
+from src.model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 
 # Informacoes do usuario
 class UserInfo:
@@ -8,15 +8,14 @@ class UserInfo:
     # @param password Senha do usuario
     # @param credit Quantidade de creditos do usuario
     def __init__(self, user, password, credit):
-
-        if(user == None):
-            raise InvalidParameterException("'user' é None")
+        if(not isinstance(user, str)):
+            raise InvalidParameterException("'user' e invalido")
         
-        if(password == None):
-            raise InvalidParameterException("'password' é None")
+        if(not isinstance(password, str)):
+            raise InvalidParameterException("'password' e invalido")
 
-        if(credit == None):
-            raise InvalidParameterException("'credit' é None")
+        if(not isinstance(credit, int) and not isinstance(credit, float)):
+            raise InvalidParameterException("'credit' e invalido")
 
         self.__user = user
         self.__password = password
@@ -30,8 +29,8 @@ class UserInfo:
     # Atualiza o nome do usuario
     # @param user Novo nome do usuario
     def setUser(self, user):
-        if(user == None):
-            raise InvalidParameterException("'user' é None")
+        if(not isinstance(user, str)):
+            raise InvalidParameterException("'user' e invalido")
         self.__user = user
 
     # Obtem a senha do usuario criptografada
@@ -42,8 +41,8 @@ class UserInfo:
     # Atualiza a senha do usuario
     # @param password Nova senha do usuario
     def setPassword(self, password):
-        if(password == None):
-            raise InvalidParameterException("'password' é None")
+        if(not isinstance(password, str)):
+            raise InvalidParameterException("'password' e invalido")
         self.__password = password
 
     # Obtem a quantidade de creditos do usuario
@@ -54,14 +53,14 @@ class UserInfo:
     # Atualiza a quantidade de creditos do usuario
     # @param credit Nova quantidade de creditos do usuario
     def setCredit(self, credit):
-        if(credit == None):
-            raise InvalidParameterException("'credit' é None")
+        if(not isinstance(credit, int) and not isinstance(credit, float)):
+            raise InvalidParameterException("'credit' e invalido")
         self.__credit = credit
 
     # Metodo privado para encriptar a senha do usuario
     # @param password Senha a ser encriptada
     # @returns Nova senha encriptada
     def __cryptPassword(self, password):
-        if(password == None):
-            raise InvalidParameterException("'password' é None")
+        if(not isinstance(password, str)):
+            raise InvalidParameterException("'password' e invalido")
         return "HASH" + password[::-1] + "000"
