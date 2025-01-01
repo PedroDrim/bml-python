@@ -1,7 +1,6 @@
-from model.TableAnalysis.TableAnalysis import TableAnalysis
-from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
+from src.model.TableAnalysis.TableAnalysis import TableAnalysis
+from src.model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
-import numpy as np
 
 # Classe para ordenacao quickSort
 # @see TableAnalysis

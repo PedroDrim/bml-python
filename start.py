@@ -1,11 +1,11 @@
-from model.UserInfo.UserInfo import UserInfo
-from src.provider.TableReader import TableReader
-from src.provider.BenchmarkMeasure import BenchmarkMeasure
-from src.provider.SummaryAnalysis import SummaryAnalysis
-from src.provider.MergeSortAnalysis import MergeSortAnalysis
-from src.provider.QuickSortAnalysis import QuickSortAnalysis
-from src.provider.LanguageSortAnalysis import LanguageSortAnalysis
-from model.TimeFormat.TimeFormat import TimeFormat
+from src.model.UserInfo.UserInfo import UserInfo
+from src.provider.TableReader.TableReader import TableReader
+from src.provider.BenchmarkMeasure.BenchmarkMeasure import BenchmarkMeasure
+from src.provider.SummaryAnalysis.SummaryAnalysis import SummaryAnalysis
+from src.provider.MergeSortAnalysis.MergeSortAnalysis import MergeSortAnalysis
+from src.provider.QuickSortAnalysis.QuickSortAnalysis import QuickSortAnalysis
+from src.provider.LanguageSortAnalysis.LanguageSortAnalysis import LanguageSortAnalysis
+from src.model.TimeFormat.TimeFormat import TimeFormat
 import numpy as np
 import json
 import sys
@@ -40,6 +40,7 @@ class Start:
             print("\t[LOG] Read")
             benchmark.startState("Read@" + str(index))
             tableReader = TableReader(fileName)
+            tableReader.open()
             bList = tableReader.readAll()
             benchmark.endState("Read@" + str(index))
             #==================================================

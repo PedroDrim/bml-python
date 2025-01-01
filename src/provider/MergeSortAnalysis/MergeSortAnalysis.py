@@ -1,7 +1,6 @@
-from model.TableAnalysis.TableAnalysis import TableAnalysis
-from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
+from src.model.TableAnalysis.TableAnalysis import TableAnalysis
+from src.model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
-import numpy as np
 
 # Classe para ordenacao mergeSort
 # @see model.TableAnalysis
@@ -13,7 +12,7 @@ class MergeSortAnalysis(TableAnalysis):
     # @see TableAnalysis
     def analysis(self, userInfoList):
         if(not isinstance(userInfoList, pd.Series) or len(userInfoList) == 0):
-            raise InvalidParameterException("'userInfoList' é None ou vazio")
+            raise InvalidParameterException("'userInfoList' é invalido ou vazio")
         
         return self.__mergeSort(userInfoList.values)
 

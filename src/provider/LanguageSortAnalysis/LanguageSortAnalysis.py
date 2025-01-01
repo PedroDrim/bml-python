@@ -1,5 +1,5 @@
-from model.TableAnalysis.TableAnalysis import TableAnalysis
-from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
+from src.model.TableAnalysis.TableAnalysis import TableAnalysis
+from src.model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
 
 # Classe para analise de dados, obtem um usuario aleatoriamente
@@ -12,7 +12,7 @@ class LanguageSortAnalysis(TableAnalysis):
     # @see TableAnalysis
     def analysis(self, userInfoList):
         if(not isinstance(userInfoList, pd.DataFrame) or userInfoList.empty):
-            raise InvalidParameterException("'userInfoList' é None ou vazio")
+            raise InvalidParameterException("'userInfoList' é invalido ou vazio")
 
-        sortedList = userInfoList.sort_values(by=['credit'])
+        sortedList = userInfoList.sort_values(by=['credit'], ascending = False)
         return sortedList

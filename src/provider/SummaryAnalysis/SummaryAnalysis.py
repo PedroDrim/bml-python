@@ -1,5 +1,5 @@
-from model.TableAnalysis.TableAnalysis import TableAnalysis
-from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
+from src.model.TableAnalysis.TableAnalysis import TableAnalysis
+from src.model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
 import pandas as pd
 
 # Classe para analise de dados, obtem os valores maximo e minimo dos creditos dos usuarios

@@ -1,7 +1,8 @@
-from model.BenchmarkOutput.BenchmarkOutput import BenchmarkOutput
-from model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
-from model.exception.DataReaderException.DataReaderException import DataReaderException
-from model.exception.BenchmarkException.BenchmarkException import BenchmarkException
+from src.model.BenchmarkOutput.BenchmarkOutput import BenchmarkOutput
+from src.model.exception.InvalidParameterException.InvalidParameterException import InvalidParameterException
+from src.model.exception.DataReaderException.DataReaderException import DataReaderException
+from src.model.exception.BenchmarkException.BenchmarkException import BenchmarkException
+from src.model.TimeFormat.TimeFormat import TimeFormat
 
 import time
 import json
@@ -19,8 +20,8 @@ class BenchmarkMeasure(BenchmarkOutput):
     # Inicio da captura de estado
     # @param tag Nome da captura referente
     def startState(self, tag):
-        if(tag == None):
-            raise InvalidParameterException("'tag' é None")
+        if(not isinstance(tag, str)):
+            raise InvalidParameterException("'tag' e invalido")
 
         bTime = time.time()
         sym = tag + self.__START_MARK
@@ -29,8 +30,8 @@ class BenchmarkMeasure(BenchmarkOutput):
     # Fim da captura de estado
     # @param tag Nome da captura referente
     def endState(self, tag):
-        if(tag == None):
-            raise InvalidParameterException("'tag' é None")
+        if(not isinstance(tag, str)):
+            raise InvalidParameterException("'tag' e invalido")
 
         bTime = time.time()
         sym = tag + self.__END_MARK
@@ -40,12 +41,12 @@ class BenchmarkMeasure(BenchmarkOutput):
     # @param tag Nome da captura referente
     # @param format Formato do resultado
     # @return Tempo decorrido entre o inicio e o fim da captura de estado
-    def __resultByTag(self, tag, format):
-        if(tag == None):
-            raise InvalidParameterException("'tag' é None")
+    def resultByTag(self, tag, format):
+        if(not isinstance(tag, str)):
+            raise InvalidParameterException("'tag' e invalido")
 
-        if(format == None):
-            raise InvalidParameterException("'format' é None")
+        if(not isinstance(format, TimeFormat)):
+            raise InvalidParameterException("'format' e invalido")
 
         startSym = tag + self.__START_MARK
         endSym = tag + self.__END_MARK
@@ -64,15 +65,15 @@ class BenchmarkMeasure(BenchmarkOutput):
     # Resultado de todas as capturas de estado
     # @param format Formato do resultado
     # @return Mapa contendo o tempo decorrido entre o inicio e o fim da captura de estado para cada estado gerado.
-    def __result(self, format):
-        if(format == None):
-            raise InvalidParameterException("'format' é None")
+    def result(self, format):
+        if(not isinstance(format, TimeFormat)):
+            raise InvalidParameterException("'format' e invalido")
 
         mapResult = {}
 
         for key in self.__benchMap:
             tag = key.split("_")[0]
-            time = self.__resultByTag(tag, format)
+            time = self.resultByTag(tag, format)
             mapResult[tag] = time
 
         return mapResult
@@ -81,14 +82,13 @@ class BenchmarkMeasure(BenchmarkOutput):
     # @param fileName Nome do arquivo de saida
     # @param format Formato do resultado
     def export(self, fileName, format):
-
-        if(fileName == None):
-            raise InvalidParameterException("'fileName' é None")
+        if(not isinstance(fileName, str)):
+            raise InvalidParameterException("'tag' e invalido")
         
-        if(format == None):
-            raise InvalidParameterException("'format' é None")
+        if(not isinstance(format, TimeFormat)):
+            raise InvalidParameterException("'format' e invalido")
 
-        mapResult = self.__result(format)
+        mapResult = self.result(format)
         serilizedString = json.dumps(mapResult)
         
         try:

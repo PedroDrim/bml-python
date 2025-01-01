@@ -13,7 +13,7 @@ RUN apt update && apt install -y build-essential unzip
 RUN pip install pandas numpy
 
 # Executando testes
-#RUN sh Test.sh
+RUN sh Test.sh
 
 # Descompando arquivos de simulacao
 RUN unzip data/simulationInput_M.zip -d data
