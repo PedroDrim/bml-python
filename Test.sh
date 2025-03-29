@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 -m unittest -v src/model/UserInfo/UserInfoTest.py 
+coverage run -m unittest -v src/model/UserInfo/UserInfoTest.py 
