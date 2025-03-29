@@ -13,40 +13,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: 🚀 Checkout do código
         uses: actions/checkout@v4
 
-      - name: Verificar arquivos no CI
+      - name: 📂 Listar arquivos no diretório src/
         run: ls -R src/
 
-      - name: Configurar Python 3
+      - name: 🛠️ Configurar Python 3
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Instalar dependências
+      - name: 📦 Instalar dependências
         run: |
           python -m pip install --upgrade pip
           pip install pandas numpy coverage
 
-      - name: 🚀 Executar um teste manualmente
-        run: python3 -m unittest src.model.exception.BenchmarkException.BenchmarkExceptionTest -v
-  
-      - name: Listar testes detectados
+      - name: 🔍 Testar descoberta de testes
         run: python3 -m unittest discover -s src -p "*Test.py" -v
 
-      - name: Executar testes
-        run: PYTHONPATH=src coverage run --source=src -m unittest discover -s src -p "*Test.py"
+      - name: 🚀 Executar um teste manualmente
+        run: python3 -m unittest src.model.exception.BenchmarkExceptionTest -v
 
-      - name: Verificar cobertura antes do relatório
-        run: coverage report || echo "Nenhuma cobertura encontrada!"
+      - name: 🏆 Executar testes com cobertura
+        run: PYTHONPATH=src coverage run --source=src -m unittest discover -s src -p "*Test.py" -v
 
-      - name: Gerar relatório de cobertura
+      - name: 📊 Gerar relatório de cobertura
         run: |
           coverage report -m
           coverage xml
           
-      - name: Upload da cobertura de testes
+      - name: 📤 Upload da cobertura de testes
         uses: actions/upload-artifact@v4
         with:
           name: cobertura-de-testes
@@ -58,11 +55,11 @@ jobs:
     needs: test
 
     steps:
-      - name: Checkout do código
+      - name: 🚀 Checkout do código
         uses: actions/checkout@v4
 
-      - name: Build da imagem Docker
+      - name: 🏗️ Build da imagem Docker
         run: docker build -t my-app .
 
-      - name: Rodar o container
+      - name: 🏃 Rodar o container
         run: docker run --rm my-app
