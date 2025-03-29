@@ -32,16 +32,12 @@ jobs:
       - name: Executar testes com cobertura
         run: ./Test.sh
 
-      - name: Verificar cobertura antes do relatório
-        run: |
-          if ! coverage report -m; then
-            echo "Nenhuma cobertura encontrada! Verifique se os testes estão sendo executados corretamente."
-            exit 1
-          fi
-
       - name: Gerar relatório de cobertura
-        run: coverage xml
+        run: coverage report -m
 
+      - name: Gerar relatório XML
+        run: coverage xml
+        
       - name: Upload da cobertura de testes
         uses: actions/upload-artifact@v4
         with:
