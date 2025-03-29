@@ -1,0 +1,73 @@
+name: Run Docker with Tests (Python 3)
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run Tests with Python 3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Usando a versão mais recente do Python 3
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy coverage
+
+      - name: Dar permissão de execução ao Test.sh
+        run: chmod +x Test.sh
+
+      - name: Executar testes com cobertura
+        run: ./Test.sh
+
+      - name: Gerar relatório de cobertura
+        run: coverage report -m
+
+      - name: Gerar relatório XML
+        run: coverage xml
+        
+      - name: Upload da cobertura de testes
+        uses: actions/upload-artifact@v4
+        with:
+          name: cobertura-de-testes
+          path: coverage.xml
+
+      - name: Salvar logs da execução dos testes
+        run: |
+          mkdir -p logs
+          cp .coverage logs/ || true
+        if: always()
+      
+      - name: Upload dos logs de teste
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-de-teste
+          path: logs/
+        if: always()
+
+  docker:
+    name: Build & Run Docker
+    runs-on: ubuntu-latest
+    needs: test  # Só executa se os testes passarem
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Build da imagem Docker
+        run: docker build -t my-app .
+
+      - name: Rodar o container
+        run: docker run --rm my-app
