@@ -10,10 +10,10 @@ COPY ./ /app/
 RUN apt update && apt install -y build-essential unzip
 
 # Instalando pacotes
-RUN pip install pandas numpy coverage
+RUN pip install pandas numpy
 
 # Executando testes
-RUN coverage run --source=src -m unittest discover -s src -p "*Test.py"
+RUN sh Test.sh
 
 # Descompando arquivos de simulacao
 RUN unzip data/simulationInput_M.zip -d data

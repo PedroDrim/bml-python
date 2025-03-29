@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.BenchmarkOutput import BenchmarkOutput
+from src.model.BenchmarkOutput.BenchmarkOutput import BenchmarkOutput
 
 class MockBenchmarkOutput(BenchmarkOutput):
     def startState(self, tag):
