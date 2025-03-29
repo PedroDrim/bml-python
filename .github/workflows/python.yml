@@ -29,6 +29,9 @@ jobs:
       - name: Executar testes
         run: sh Test.sh
 
+      - name: Verificar cobertura antes do relatório
+        run: coverage report || echo "Nenhuma cobertura encontrada!"
+
       - name: Gerar relatório de cobertura
         run: |
           coverage report -m
