@@ -41,7 +41,7 @@ jobs:
           path: coverage.xml
 
   docker:
-    name: Build & Run Docker
+    name: 🐳 Build & Run Docker
     runs-on: ubuntu-latest
 
     steps:
