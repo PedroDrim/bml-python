@@ -6,12 +6,7 @@ on:
   pull_request:
     branches: [ "*" ]
   workflow_dispatch:
-    inputs:
-      branch:
-        description: "Selecione a branch para rodar o workflow"
-        required: true
-        default: "main"
-        
+
 jobs:
   test:
     name: Run Tests with Python 3
@@ -31,21 +26,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy coverage
 
-      - name: Executar testes
-        run: sh Test.sh
+      - name: Dar permissão de execução ao Test.sh
+        run: chmod +x Test.sh
+
+      - name: Executar testes com cobertura
+        run: ./Test.sh
 
       - name: Verificar cobertura antes do relatório
-        run: coverage report || echo "Nenhuma cobertura encontrada!"
+        run: |
+          if ! coverage report -m; then
+            echo "Nenhuma cobertura encontrada! Verifique se os testes estão sendo executados corretamente."
+            exit 1
+          fi
 
       - name: Gerar relatório de cobertura
-        run: |
-          coverage report -m
-          coverage xml
+        run: coverage xml
+
       - name: Upload da cobertura de testes
         uses: actions/upload-artifact@v4
         with:
           name: cobertura-de-testes
-          path: coverage.xml  # Caminho para o relatório de cobertura gerado
+          path: coverage.xml
+
+      - name: Salvar logs da execução dos testes
+        run: |
+          mkdir -p logs
+          cp .coverage logs/ || true
+        if: always()
+      
+      - name: Upload dos logs de teste
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-de-teste
+          path: logs/
+        if: always()
 
   docker:
     name: Build & Run Docker
