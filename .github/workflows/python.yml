@@ -26,12 +26,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy coverage
 
-      - name: Dar permissão de execução ao Test.sh
-        run: chmod +x Test.sh
-
       - name: Executar testes com cobertura
-        run: ./Test.sh
-
+        run: coverage run --source=src -m unittest discover -s src -p "*Test.py"
+      
       - name: Gerar relatório de cobertura
         run: coverage report -m
 
