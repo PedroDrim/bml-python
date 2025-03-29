@@ -10,7 +10,7 @@ COPY ./ /app/
 RUN apt update && apt install -y build-essential
 
 # Instalando pacotes
-RUN pip install numpy
+RUN pip install numpy coverage
 
 # Executando testes
 RUN sh Test.sh
