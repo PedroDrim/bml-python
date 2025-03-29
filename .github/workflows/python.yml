@@ -63,3 +63,4 @@ jobs:
 
       - name: 🏃 Rodar o container
         run: docker run --rm my-app
+
