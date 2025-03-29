@@ -1,7 +1,6 @@
 # bml-Python
 
 [![Docker Build](https://github.com/PedroDrim/bml-python/actions/workflows/python.yml/badge.svg?branch=errorclass)](https://github.com/PedroDrim/bml-python/actions)
-[![CodeQL Security](https://github.com/PedroDrim/bml-python/actions/workflows/codeql.yml/badge.svg?branch=errorclass)](https://github.com/PedroDrim/bml-python/actions)
 [![Codacy](https://github.com/PedroDrim/bml-python/actions/workflows/codacy.yml/badge.svg?branch=errorclass)](https://github.com/PedroDrim/bml-python/actions)
 
 ### Introdução
