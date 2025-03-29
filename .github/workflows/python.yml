@@ -26,6 +26,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy coverage
 
+      - name: Listando arquivos
+        run: python3 -m unittest discover -s src -p "*Test.py" -v
+
       - name: Executar testes com cobertura
         run: python3 -m coverage run --source=src --branch -m unittest discover -s src -p "*Test.py"
       
