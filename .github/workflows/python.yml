@@ -27,7 +27,7 @@ jobs:
           pip install pandas numpy coverage
 
       - name: Executar testes com cobertura
-        run: coverage run --source=src -m unittest discover -s src -p "*Test.py"
+        run: python3 -m coverage run --source=src --branch -m unittest discover -s src -p "*Test.py"
       
       - name: Gerar relatório de cobertura
         run: coverage report -m
