@@ -10,7 +10,7 @@ COPY ./ /app/
 RUN apt update && apt install -y build-essential unzip
 
 # Instalando pacotes
-RUN pip install pandas numpy
+RUN pip install pandas numpy coverage
 
 # Executando testes
 RUN sh Test.sh
