@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.DataReader.DataReader import DataReader
+from src.model.DataReader import DataReader
 
 class MockDataReader(DataReader):
     def readAll(self):
