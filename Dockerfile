@@ -13,7 +13,7 @@ RUN apt update && apt install -y build-essential
 RUN pip install numpy coverage
 
 # Executando testes
-RUN sh Test.sh
+RUN coverage run --source=src -m unittest discover -s src -p "*Test.py"
 
 # Iniciando CLI
 ENTRYPOINT ["sh","Bench.sh"]
