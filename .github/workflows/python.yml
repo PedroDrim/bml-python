@@ -30,7 +30,7 @@ jobs:
           pip install pandas numpy coverage
 
       - name: 🚀 Executar um teste manualmente
-        run: python3 -m unittest src.model.exception.BenchmarkExceptionTest -v
+        run: python3 -m unittest src.model.exception.BenchmarkException.BenchmarkExceptionTest -v
   
       - name: Listar testes detectados
         run: python3 -m unittest discover -s src -p "*Test.py" -v
