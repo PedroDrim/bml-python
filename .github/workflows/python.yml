@@ -6,8 +6,12 @@ on:
   pull_request:
     branches: [ "*" ]
   workflow_dispatch:
-    branches: [ "*" ]
-
+    inputs:
+      branch:
+        description: "Selecione a branch para rodar o workflow"
+        required: true
+        default: "main"
+        
 jobs:
   test:
     name: Run Tests with Python 3
