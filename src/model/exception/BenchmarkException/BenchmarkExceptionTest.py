@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.exception.BenchmarkException.BenchmarkException import BenchmarkException
+from model.exception.BenchmarkException.BenchmarkException import BenchmarkException
 
 class BenchmarkExceptionTest(unittest.TestCase):
 
