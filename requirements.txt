@@ -1,0 +1,6 @@
+pandas
+numpy
+coverage
+flake8
+bandit
+

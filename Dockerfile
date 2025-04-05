@@ -10,7 +10,7 @@ COPY ./ /app/
 RUN apt update && apt install -y build-essential unzip
 
 # Instalando pacotes
-RUN pip install pandas coverage
+RUN pip install -r requirements.txt
 
 # Executando testes
 RUN coverage run --source=src -m unittest discover -s src -p "*Test.py"
