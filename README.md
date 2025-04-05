@@ -1,8 +1,7 @@
 # bml-Python
 
-[![Docker Build](https://github.com/PedroDrim/bml-python/actions/workflows/python.yml/badge.svg?branch=simpleclass)](https://github.com/PedroDrim/bml-python/actions)
-[![CodeQL Security](https://github.com/PedroDrim/bml-python/actions/workflows/codeql.yml/badge.svg?branch=simpleclass)](https://github.com/PedroDrim/bml-python/actions)
-[![Codacy](https://github.com/PedroDrim/bml-python/actions/workflows/codacy.yml/badge.svg?branch=simpleclass)](https://github.com/PedroDrim/bml-python/actions)
+[![Run Docker with Tests (Python)](https://github.com/PedroDrim/bml-python/actions/workflows/python.yml/badge.svg?branch=simpleclass)](https://github.com/PedroDrim/bml-python/actions/workflows/python.yml)
+[![Codacy Security Scan](https://github.com/PedroDrim/bml-python/actions/workflows/codacy.yml/badge.svg?branch=simpleclass)](https://github.com/PedroDrim/bml-python/actions/workflows/codacy.yml)
 
 ### Introdução
 

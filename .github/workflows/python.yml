@@ -43,6 +43,7 @@ jobs:
   docker:
     name: 🐳 Build & Run Docker
     runs-on: ubuntu-latest
+    needs: test
 
     steps:
       - name: 🚀 Checkout do código
